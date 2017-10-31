@@ -1,0 +1,73 @@
+{%  extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Orte" %}{% endblock %}
+{% block head %}{% trans "Orte Übersicht" %}{% endblock %}
+
+{% block content %}
+
+     {% if Locations %}
+
+        <table id="overview">
+        <th id="overview">{% trans "Ort" %}</th>
+        <th>{% trans "Geräte" %}</th>
+            <th>{% trans "Raum" %}</th>
+            <th>{% trans "Gebäude" %}</th>
+            <th>{% trans "Adresse" %}</th>
+
+        {% for location in Locations %}
+<tr id="overview">
+      <td id="overview">
+          <b><a href="/location/{{ location.id }}"> {{ location.description }}</a> </b>
+
+      </td>
+<td id="overview">
+   {% for device in location.device_set.all %}
+       {{ device.description }} <br>
+
+   {% endfor %}
+
+</td>
+        <td id="overview">
+          {{ location.room.number }}<br>
+            {{ location.room.description }}
+
+      </td>
+        <td id="overview">
+          {{ location.room.building.description }}<br>
+
+      </td>
+       <td id="overview">
+       {{ location.room.building.address.addressLine1 }}<br>
+           {% if location.room.building.address.addressLine2 %}
+                {{ location.room.building.address.addressLine2 }}<br>
+           {%  endif %}
+            {% if location.room.building.address.zip %}
+                {{ location.room.building.address.zip }}
+           {%  endif %}
+        {% if location.room.building.address.city %}
+                {{ location.room.building.address.city }}<br>
+           {%  endif %}
+       {% if location.room.building.address.country %}
+                {{ location.room.building.address.country }}<br>
+           {%  endif %}
+      </td>
+
+</tr>
+
+
+        {% endfor %}
+    <tr>
+<td></td>
+<td><br><a href="/locations/add/">neuen Ort/Raum hinzufügen</a><br>
+<a href="/locations/buildings/add/">neue Adresse/Gebäude hinzufügen</a>
+</td>
+
+
+        </table>
+    {% else %}
+        <p>{% trans "Keine Orte gefunden, neuen hinzufügen" %}</p>
+    {% endif %}
+
+
+{% endblock %}

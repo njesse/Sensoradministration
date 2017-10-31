@@ -1,0 +1,59 @@
+{%  extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Verbindungen" %}{% endblock %}
+{% block head %}{% trans "Bestehende Verbindungen" %}{% endblock %}
+
+{% block content %}
+ <table id="overview">
+        <th id="overview">{%  trans "Verbindung" %}</th>
+            <th>{%  trans "Typ" %}</th>
+            <th>{%  trans "Angeschlossene Geräte" %}</th>
+            <th>{% trans "Allgemeine Parameter" %}</th>
+
+        {% for connection in Connections %}
+            <tr id="overview">
+            <td><a href="{% url 'url_connection' connection.id %}">{{ connection.description }}</a></td>
+            <td>{{ connection.type }}</td>
+            <td>
+                {% for partner in connection.connectionpartner_set.all %}
+                    {% if partner.master %}
+                       <b>{{ partner.device }}</b> (Master)  <br>
+                    {% else %}
+                    {{ partner.device }} <br>
+                    {% endif %}
+                {% endfor %}
+            </td>
+            <td>
+                {% for parameter in connection.parameterint_set.all %}
+                    {{ parameter }}<br>
+                {% endfor %}
+                {% for parameter in connection.parameterip_set.all %}
+                    {{ parameter }}<br>
+                {% endfor %}
+                 {% for parameter in connection.parametertext100_set.all %}
+                    {{ parameter }}<br>
+                {% endfor %}
+            {% for parameter in connection.parameterboolean_set.all %}
+                    {{ parameter }}<br>
+                {% endfor %}
+
+                {% for parameter in connection.parameter_set.all %}
+
+                    {{ parameter.parameterip }}
+                    {{ parameter.parameterint }}
+                    {{ parameter.parametertext100 }}
+                    {{ parameter.parameterboolean }}
+                    <br>
+                    {% endfor %}
+            </td>
+            </tr>
+        {% endfor %}
+ <tr>
+    <td></td>
+    <td colspan="2"><br><a href="/connection/add/">neue Verbindung hinzufügen</a></td>
+    <td></td>
+     <td></td>
+</tr>
+ </table>
+{% endblock %}

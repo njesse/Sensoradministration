@@ -1,0 +1,82 @@
+{%  extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Verwaltung der Orte" %}{% endblock %}
+{% block head %}{% trans "Räume in Gebäuden" %}{% endblock %}
+
+{% block content %}
+{% comment %}
+ <table id="newobject">
+ {% for room in rooms_all %}
+     <tr>
+     <th id="overview">{{ room.number }} {{ room.description }} {{ room.building.description }}</th>
+     </tr>
+
+     {% for location in room.location_set.all %}
+     <tr id="overview" >
+            <td align="center">{{ location.description }}</td>
+     </tr>
+      {% endfor %}
+     <tr><td>&nbsp;</td></tr>
+ {% endfor %}
+ <tr>
+ </tr>
+ </table>
+{% endcomment %}
+
+ <table id="newobject">
+ {% for building in buildings_all %}
+     <tr>
+     <th id="overview">{{ building.description }}</th>
+     </tr>
+
+     {% for room in building.room_set.all %}
+     <tr id="overview" >
+            <td align="center">{{ room.number }} {{ room.description }}</td>
+     </tr>
+      {% endfor %}
+     <tr><td>&nbsp;</td></tr>
+ {% endfor %}
+ <tr>
+ </tr>
+ </table>
+
+<h1>Gebäude</h1>
+
+<table id="newobject">
+ {% for address in address_all %}
+     <tr>
+     <th id="overview">{{ address.addressLine1 }}</th>
+     </tr>
+
+     {% for building in address.building_set.all %}
+     <tr id="overview" >
+            <td align="center">{{ building.description }} </td>
+     </tr>
+      {% endfor %}
+     <tr><td>&nbsp;</td></tr>
+ {% endfor %}
+ <tr>
+ </tr>
+ </table>
+
+<h1>Adressen</h1>
+
+    <table id="newobject">
+     <tr>
+     <th id="overview">Adressen</th>
+     </tr
+ {% for address in address_all %}>
+     <tr id="overview" >
+            <td>{{ address.addressLine1 }} {{ address.addressLine2 }} {{ address.zip }} {{ address.city }} {{ address.country }}</td>
+
+     </tr>
+
+
+ {% endfor %}
+ <tr>
+ </tr>
+ </table>
+
+
+{% endblock %}

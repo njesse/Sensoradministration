@@ -1,0 +1,24 @@
+{%  extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Ort" %}{% endblock %}
+{% block head %}{{ location.description }}{% endblock %}
+
+{% block content %}
+
+
+
+<table id="newobject">
+
+    {% for device in location.device_set.all %}
+
+     <tr id="overview" >
+         <td align="center"><a href="/devices/sensor/{{ device.sensor.id }}"> {{ device.description }}</a></td>
+     </tr>
+
+
+ {% endfor %}
+
+</table>
+
+{% endblock %}

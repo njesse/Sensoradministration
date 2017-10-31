@@ -1,0 +1,46 @@
+{%  extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Gebäude" %}{% endblock %}
+{% block head %}{% trans "Gebäude an der Address" %}  {{ address.description }}{% endblock %}
+
+{% block content %}<form method="post" enctype="multipart/form-data">
+{% csrf_token %}
+
+{{ buildings.management_form }}
+  {% for form in buildings %}
+        {% for hidden in form.hidden_fields %}
+                            {{ hidden }}
+                         {% endfor %}
+     {% endfor %}
+
+
+<table id="newobject">
+
+ {% for building in buildings %}
+
+        <tr id="overview">
+             <td> Bezeichnung: {{ building.description }}
+                    {% if  building.description.value is None %}
+                         (neu)
+                    {% endif %}
+            </td>
+        </tr>
+ {% endfor  %}
+
+<tr>
+<td>
+                 <button style="width:200px" type="submit" name="saveChanges" class="save btn btn-default"> {% trans "Änderungen übernehmen" %}</button>
+               (fügt bei Bedarf zusätzliche Felder an)
+                 {% if requestref %}
+                     <br>
+                       <button style="width:200px" type="submit" name="saveChangesBack" class="save btn btn-default"> {% trans "Mit Änderungen zurück" %}</button>
+                <br>
+                 <button style="width:200px" type="submit" name="cancel" class="save btn btn-default"> {% trans "Ohne Änderungen zurück" %}</button>
+
+                 {% endif %}
+</td>
+</tr>
+</table>
+</form>
+{% endblock %}

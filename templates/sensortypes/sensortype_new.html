@@ -1,0 +1,58 @@
+{%  extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Sensortyp" %} {{ Sensortype }}{% endblock %}
+{% block head %}{% trans "Neuer Sensortyp" %}{% endblock %}
+
+{% block content %}
+
+
+     <form method="post" enctype="multipart/form-data">
+
+
+
+     {% csrf_token %}
+     {% for hidden in form.hidden_fields %}
+                            {{ hidden }}
+                         {% endfor %}
+
+
+     <table id="newobject">
+
+         <tr id="overview">
+
+                 <td >
+                {% trans "Typ Bezeichnung" %}
+
+            </td>
+            <td >
+                    {{ form.typeName }}
+            </td>
+         </tr>
+
+          <tr id="overview">
+
+                 <td >
+                {% trans "Datenblatt" %}
+
+            </td>
+            <td >
+                    {{ form.datasheet }}
+            </td>
+         </tr>
+
+
+
+         <tr>
+             <td>
+
+             </td>
+             <td>
+                 <button type="submit" class="save btn btn-default"> {% trans "Sensortyp erzeugen" %}</button>
+             </td>
+         </tr>
+     </table>
+
+    </form>
+
+{% endblock %}

@@ -1,0 +1,286 @@
+{%  extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Verbindung" %}{% endblock %}
+{% block head %}{% trans "Verbindung: " %}{{ connection.description }}{% endblock %}
+
+{% block content %}
+<form method="post" enctype="multipart/form-data">
+
+
+
+     {% csrf_token %}
+     {% for hidden in connectionProperties.hidden_fields %}
+                            {{ hidden }}
+     {% endfor %}
+
+    {% for form in partnerProperties %}
+    {% for hidden in form.hidden_fields %}
+        {{ hidden }}
+    {% endfor %}
+    {% endfor %}
+
+    {% for form in ParameterInt %}
+    {% for hidden in form.hidden_fields %}
+        {{ hidden }}
+    {% endfor %}
+    {% endfor %}
+ {% for form in ParameterBoolean %}
+    {% for hidden in form.hidden_fields %}
+        {{ hidden }}
+    {% endfor %}
+    {% endfor %}
+     {% for form in ParameterIP %}
+    {% for hidden in form.hidden_fields %}
+        {{ hidden }}
+    {% endfor %}
+    {% endfor %}
+ {% for form in ParameterText100 %}
+    {% for hidden in form.hidden_fields %}
+        {{ hidden }}
+    {% endfor %}
+    {% endfor %}
+
+<table id="newobject">
+    <tr id="overview">
+        <td>Bezeichnung:</td>
+        <td>{{ connectionProperties.description }}</td>
+    </tr>
+    <tr id="overview">
+        <td>Typ:</td>
+        <td>{{ connectionProperties.type }}</td>
+    </tr>
+    <tr id="overview">
+        <td>Angeschlossene Geräte:</td>
+        <td>
+                       <table border="0" cellspacing="10" cellpadding="0" >
+
+                    {% for partnerForm in partnerProperties  %}
+                        <tr>
+
+                         <td align="center">{{ partnerForm.device }}</td>
+                        <td align="center"> {% trans "Master der Verbindung" %} {{ partnerForm.master }} </td>
+                        <td align="center">
+                           {% if partnerForm.device.value %}
+                              <a href=""> Parameter für dieses Gerät</a>
+
+                            {% endif %}
+                        </td>
+                        <td align="center">
+                            {% if partnerForm.device.value %}
+                            {%  trans "Verbindung trennen " %} {{ partnerForm.DELETE }}
+
+                            {% endif %}
+                        </td>
+                        </tr>
+
+
+                     {% endfor %}
+                </table>
+
+
+             {{ partnerProperties.management_form }}
+
+
+
+
+              {% comment %}}  {% for measurement in Sensortype.measurements.all %}
+                   {{ measurement }} <br>
+                    {% endfor %}
+                {% endcomment %}
+
+        </td>
+    </tr>
+
+<tr id="overview">
+        <td>Integer Parameter<br>
+
+                    <p>Bsp.:
+                    {% for par in connection.type.connectionhasparameter_set.all%}
+                        {% if par.format == 'int' %}
+
+                            <b>{{ par }}</b>
+                        {% endif %}
+                    {% endfor %}
+                    </p>
+        </td>
+        <td>
+             <table border="0" cellspacing="10" cellpadding="0" >
+
+                    {% for parameter in ParameterInt  %}
+                        <tr>
+
+                       <td align="center"> {% trans "Bezeichnung:" %} {{ parameter.name }} </td>
+                        <td align="center"> {% trans "Wert" %} {{ parameter.value }} </td>
+                            {% if parameter.name.value %}
+                        <td align="center">{% trans "Löschen" %}{{ parameter.DELETE }}</td>
+                        {% endif %}
+                        </tr>
+                        <tr>
+                       {% if parameter.errors %}
+                                    {% for field in parameter %}
+                                     {% if field.errors%}
+                                      <td>    {% for error in field.errors %}
+
+                                     <p id="error"> {{ error|escape }} </p>
+                                        {% endfor %}</td>
+                                      {% endif %}
+                                    {% endfor %}
+                            {% endif %}
+                        </tr>
+                     {% endfor %}
+                </table>
+             {{ ParameterInt.management_form }}
+
+        </td>
+</tr>
+<tr id="overview">
+        <td>Boolean Parameter
+        <br>
+
+                    <p>Bsp.:
+                    {% for par in connection.type.connectionhasparameter_set.all%}
+                        {% if par.format == 'bool' %}
+                            <b>{{ par }}</b>
+                        {% endif %}
+                    {% endfor %}
+                    </p></td>
+        <td>
+            <table border="0" cellspacing="10" cellpadding="0" >
+
+                    {% for parameter in ParameterBoolean  %}
+                        <tr>
+
+                       <td align="center"> {% trans "Bezeichnung:" %} {{ parameter.name }} </td>
+                        <td align="center"> {% trans "Wert" %} {{ parameter.value }} </td>
+                            {% if parameter.name.value %}
+                        <td align="center">{% trans "Löschen" %}{{ parameter.DELETE }}</td>
+                        {% endif %}
+                        </tr>
+                        <tr>
+                        {% if parameter.errors %}
+                                    {% for field in parameter %}
+                                      {% if field.errors%}
+                                        {% for error in field.errors %}
+
+                                     <p id="error"> {{ error|escape }} </p>
+                                        {% endfor %}
+                                      {% endif %}
+                                    {% endfor %}
+                            {% endif %}
+                        </tr>
+                        <tr>
+                       {% if parameter.errors %}
+                                    {% for field in parameter %}
+                                     {% if field.errors%}
+                                      <td>    {% for error in field.errors %}
+
+                                     <p id="error"> {{ error|escape }} </p>
+                                        {% endfor %}</td>
+                                      {% endif %}
+                                    {% endfor %}
+                            {% endif %}
+                        </tr>
+                     {% endfor %}
+                </table>
+             {{ ParameterBoolean.management_form }}
+
+        </td>
+</tr>
+<tr id="overview">
+        <td>String Parameter (Länge: 100)<br>
+        <p>Bsp.:
+                    {% for par in connection.type.connectionhasparameter_set.all%}
+
+                        {% if par.format == 'txt' %}
+                              <b> {{ par }}</b>
+                        {% endif %}
+                    {% endfor %}
+                    </p></td>
+        <td>
+ <table border="0" cellspacing="10" cellpadding="0" >
+
+                    {% for parameter in ParameterText100  %}
+                        <tr>
+
+                       <td align="center"> {% trans "Bezeichnung:" %} {{ parameter.name }} </td>
+                        <td align="center"> {% trans "Wert" %} {{ parameter.value }} </td>
+                            {% if parameter.name.value %}
+                        <td align="center">{% trans "Löschen" %}{{ parameter.DELETE }}</td>
+                        {% endif %}
+                        </tr>
+                        <tr>
+                       {% if parameter.errors %}
+                                    {% for field in parameter %}
+                                     {% if field.errors%}
+                                      <td>    {% for error in field.errors %}
+
+                                     <p id="error"> {{ error|escape }} </p>
+                                        {% endfor %}</td>
+                                      {% endif %}
+                                    {% endfor %}
+                            {% endif %}
+                        </tr>
+                     {% endfor %}
+                </table>
+             {{ ParameterText100.management_form }}
+
+        </td>
+</tr>
+<tr id="overview">
+        <td>IP Parameter<br>
+         <p>Bsp.:
+                    {% for par in connection.type.connectionhasparameter_set.all%}
+                        {% if par.format == 'IP' %}
+
+                          <b>{{ par }}</b>
+                        {% endif %}
+                    {% endfor %}
+                    </p></td>
+        <td>
+ <table border="0" cellspacing="10" cellpadding="0" >
+
+                    {% for parameter in ParameterIP  %}
+                        <tr>
+
+                       <td align="center"> {% trans "Bezeichnung:" %} {{ parameter.name }} </td>
+                        <td align="center"> {% trans "Wert" %} {{ parameter.value }} </td>
+                            {% if parameter.name.value %}
+                        <td align="center">{% trans "Löschen" %}{{ parameter.DELETE }}</td>
+                        {% endif %}
+                        </tr>
+                        <tr>
+                       {% if parameter.errors %}
+                                    {% for field in parameter %}
+                                     {% if field.errors%}
+                                      <td>    {% for error in field.errors %}
+
+                                     <p id="error"> {{ error|escape }} </p>
+                                        {% endfor %}</td>
+                                      {% endif %}
+                                    {% endfor %}
+                            {% endif %}
+                        </tr>
+                     {% endfor %}
+                </table>
+             {{ ParameterIP.management_form }}
+
+
+        </td>
+</tr>
+<tr>
+<td></td>
+<td>
+                 <button style="width:200px" type="submit" name="saveChanges" class="save btn btn-default"> {% trans "Änderungen übernehmen" %}</button>
+                 {% if requestref %}
+                     <br>
+                       <button style="width:200px" type="submit" name="saveChangesBack" class="save btn btn-default"> {% trans "Mit Änderungen zurück" %}</button>
+                <br>
+                 <button style="width:200px" type="submit" name="cancel" class="save btn btn-default"> {% trans "Ohne Änderungen zurück" %}</button>
+
+                 {% endif %}
+</td>
+</tr>
+</table>
+</form>
+{% endblock %}

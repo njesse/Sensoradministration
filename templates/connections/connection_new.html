@@ -1,0 +1,74 @@
+{%  extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "neue Verbindung hinzufügen" %}{% endblock %}
+{% block head %}{% trans "neue Verbindung" %}{% endblock %}
+
+{% block content %}
+     <form method="post" enctype="multipart/form-data">
+   {% csrf_token %}
+     {% for hidden in form.hidden_fields %}
+                            {{ hidden }}
+                         {% endfor %}
+
+
+     <table id="newobject">
+         <tr id="overview">
+
+                 <td >
+                {% trans "Bezeichnung" %}
+
+            </td>
+            <td >
+                    {{ form.description }}
+            </td>
+         </tr>
+
+          <tr id="overview">
+
+                 <td >
+                {% trans "Verbindungstyp" %}
+
+            </td>
+            <td >
+                    {{ form.type }} <!-- <a href="/connections/toplogy/add/">(weitere Topologien hinzufügen)</a> -->
+            </td>
+         </tr>
+
+
+
+<tr>
+    <td>
+
+
+
+
+    </td>
+</tr>
+         <tr>
+             <td>
+
+             </td>
+             <td>
+             <br>
+                 <button style="width:200px" type="submit" name="saveChanges" class="save btn btn-default"> {% trans "Änderungen übernehmen" %}</button>
+                    {% trans "(fügt bei Bedarf zusätzliche Felder hinzu)" %}
+
+                 {% if requestref %}
+                     <br>
+                       <button style="width:200px" type="submit" name="saveChangesBack" class="save btn btn-default"> {% trans "Mit Änderungen zurück" %}</button>
+<br>
+
+                       <a href="{{ requestref }}">Abbrechen</a>
+
+                 {% endif %}
+
+
+             </td>
+         </tr>
+
+     </table>
+
+    </form>
+
+{% endblock %}

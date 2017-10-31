@@ -1,0 +1,62 @@
+{%  extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Sensorntypen" %}{% endblock %}
+{% block head %}{% blocktrans %}Sensortypen{% endblocktrans %}{% endblock %}
+
+{% block content %}
+    {% get_current_language as LANGUAGE_CODE %}
+<!-- Current language: {{ LANGUAGE_CODE }} -->
+     {% comment %}
+     {% if Sensortypes %}
+{% endcomment %}
+        <table id="overview">
+        <th id="overview">{% trans "Sensortyp" %}</th>
+            <th>{% trans "Messgrößen" %}</th>
+            <th>{% trans "mögliche Interfaces" %}</th>
+        {% for type in Sensortypes %}
+<tr id="overview">
+      <td id="overview">
+          <b><a href="/devices/sensors/sensortype/{{ type.id }}"> {{ type.typeName }}</a> </b>
+          {% if  type.datasheet  %}
+          <br>(<a href="/site_media/{{ type.datasheet }}">{%  trans "Datenblatt" %}</a>)
+          {% else %}
+              <br> {%  trans "Kein Datenblatt vorhanden" %}
+          {% endif %}
+      </td>
+
+        <td align="left">
+          {% for measurement in type.measurements.all %}
+             <li>    {{ measurement }}</li>
+          {% endfor %}
+      </td>
+
+         <td id="overview">
+            {% for interface in type.sensortypehasinterfaces_set.all %}
+             <li>    {{ interface.connectionType.connectionName }}
+             ({%  trans "Anzahl" %}:  {{ interface.quantity }})</li>
+          {% endfor %}
+        </td>
+
+
+</tr>
+
+
+        {% endfor %}
+        <tr>
+            <td></td>
+            <td><a href="/devices/sensors/sensortype/add">{%  trans "Neuen Typ hinzufügen" %}</a></td>
+            <td></td>
+        </tr>
+        </table>
+{% comment %}
+    {% else %}
+        <p>{%  trans "Keine Sensortypen definiert" %}</p>
+    {% endif %}
+{% endcomment %}
+
+{% endblock %}
+
+
+
+

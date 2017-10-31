@@ -1,0 +1,26 @@
+{%  extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Geräte" %}{% endblock %}
+{% block head %}{% trans "Vorhandene Geräte" %}{% endblock %}
+
+{% block content %}
+ <table id="overview">
+        <th id="overview">{%  trans "Bezeichnung" %}</th>
+            <th>{%  trans "Externe ID" %}</th>
+            <th>{% trans "Ort" %}</th>
+ <th>{% trans "Ping zuletzt gesendet" %}</th>
+ <th>{% trans "Ping zuletzt empfangen" %}</th>
+        {% for device in Devices %}
+            <tr id="overview">
+
+            <td>{{ device.description }}</td>
+            <td>{{ device.externalID }}</td>
+            <td>{{ device.location }} </td>
+           <td>{{ device.lastPing_send }} <a href="{% url 'url_device_ping' device.id %}">({% trans "jetzt senden" %})</a></td>
+                <td>{{ device.lastPing_received }}</td>
+            </tr>
+        {% endfor %}
+
+ </table>
+{% endblock %}

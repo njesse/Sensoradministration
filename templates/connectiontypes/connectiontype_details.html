@@ -1,0 +1,110 @@
+{%  extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Eigenschaften" %} {{ Connectiontype.connectionName }}{% endblock %}
+{% block head %}{% trans "Eigenschaften von" %} {{ Connectiontype.connectionName }}{% endblock %}
+
+{% block content %}
+  <form method="post" enctype="multipart/form-data">
+
+
+
+     {% csrf_token %}
+     {% for hidden in form.hidden_fields %}
+                            {{ hidden }}
+                         {% endfor %}
+
+
+     <table id="newobject">
+         <tr id="overview">
+
+                 <td >
+                {% trans "Typ Bezeichnung" %}
+
+            </td>
+            <td >
+                    {{ form.connectionName }}
+            </td>
+         </tr>
+
+          <tr id="overview">
+
+                 <td >
+                {% trans "Topologie" %}
+
+            </td>
+            <td >
+                    {{ form.topology }}  <a href="/connections/toplogy/add/">(weitere Topologien hinzufügen)</a>
+            </td>
+         </tr>
+
+
+            <tr id="overview">
+                 <td>
+                {% trans "Parameter" %}
+            </td>
+
+            <td >
+                <table border="0" cellspacing="10" cellpadding="0" >
+
+                    {% for mform in msFormset  %}
+                        <tr>
+                        <td align="center">{{ mform.parameterName }}</td>
+                        <td align="center"> {% trans "Format" %} {{ mform.format }} </td>
+                             <td align="center"> {% trans "Größe / Anzahl" %} {{ mform.size }} </td>
+                        <td align="center"> {% trans "Gerätespezifisch" %} {{ mform.isDeviceSpecific }} </td>
+                             <td align="center"> {% trans "Voreingestellt" %} {{ mform.needsToBePreset }} </td>
+                        <td align="center"> {% trans "Löschen" %}: {{ mform.DELETE }}</td>
+                        </tr>
+                         {% for hidden in mform.hidden_fields %}
+                            {{ hidden }}
+                         {% endfor %}
+
+                     {% endfor %}
+                </table>
+
+
+             {{ msFormset.management_form }}
+
+              {% comment %}}  {% for measurement in Sensortype.measurements.all %}
+                   {{ measurement }} <br>
+                    {% endfor %}
+                {% endcomment %}
+
+            </td>
+
+         </tr>
+<tr>
+    <td>
+
+
+
+
+    </td>
+</tr>
+         <tr>
+             <td>
+
+             </td>
+             <td>
+             <br>
+                 <button style="width:200px" type="submit" name="saveChanges" class="save btn btn-default"> {% trans "Änderungen übernehmen" %}</button>
+                    {% trans "(fügt bei Bedarf zusätzliche Felder für Schnittstellen und Messgrößen hinzu)" %}
+
+                 {% if requestref %}
+                     <br>
+                       <button style="width:200px" type="submit" name="saveChangesBack" class="save btn btn-default"> {% trans "Mit Änderungen zurück" %}</button>
+<br>
+                 <a href="{{ requestref }}">Abbrechen</a>
+
+                 {% endif %}
+
+
+             </td>
+         </tr>
+
+     </table>
+
+    </form>
+
+{% endblock %}

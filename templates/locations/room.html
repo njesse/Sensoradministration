@@ -1,0 +1,46 @@
+{%  extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Orte" %}{% endblock %}
+{% block head %}{% trans "Orte im Raum" %} {{ room.number }} {{ room.description }}{% endblock %}
+
+{% block content %}<form method="post" enctype="multipart/form-data">
+{% csrf_token %}
+
+{{ locations.management_form }}
+  {% for form in locations %}
+        {% for hidden in form.hidden_fields %}
+                            {{ hidden }}
+                         {% endfor %}
+     {% endfor %}
+
+
+<table id="newobject">
+
+ {% for location in locations %}
+
+        <tr id="overview">
+             <td> Bezeichnung: {{ location.description }}
+                    {% if  location.description.value is None %}
+                         (neu)
+                    {% endif %}
+            </td>
+        </tr>
+ {% endfor  %}
+
+<tr>
+<td>
+                 <button style="width:200px" type="submit" name="saveChanges" class="save btn btn-default"> {% trans "Änderungen übernehmen" %}</button>
+               (fügt bei Bedarf zusätzliche Felder an)
+                 {% if requestref %}
+                     <br>
+                       <button style="width:200px" type="submit" name="saveChangesBack" class="save btn btn-default"> {% trans "Mit Änderungen zurück" %}</button>
+                <br>
+                 <button style="width:200px" type="submit" name="cancel" class="save btn btn-default"> {% trans "Ohne Änderungen zurück" %}</button>
+
+                 {% endif %}
+</td>
+</tr>
+</table>
+</form>
+{% endblock %}

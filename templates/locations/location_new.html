@@ -1,0 +1,28 @@
+{%  extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Orte" %}{% endblock %}
+{% block head %}{% trans "neuen Ort anlegen: Raum oder Gebäude wählen" %}{% endblock %}
+
+{% block content %}
+    {% if requestref %}
+    <h3><p align="center"><a href="{{ requestref }}">Zurück zu "neuen Sensor anlegen"</a></p></h3>
+
+    {% endif %}
+<table id="newobject">
+
+    {% for building in buildings_all %}
+     <tr>
+     <th id="overview"><a href="/locations/building/{{  building.id }}">{{ building.description }}<br> ({{ building.address.addressLine1 }})</a></th>
+     </tr>
+     {% for room in building.room_set.all %}
+     <tr id="overview" >
+         <td align="center"><a href="/locations/room/{{ room.id }}">{{ room.number }} {{ room.description }}</a></td>
+     </tr>
+      {% endfor %}
+        <tr><td>&nbsp;</td></tr>
+ {% endfor %}
+
+</table>
+
+{% endblock %}

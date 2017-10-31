@@ -1,0 +1,499 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-06-22 15:26+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: .\AtorProjekt\settings.py:159
+msgid "English"
+msgstr ""
+
+#: .\AtorProjekt\settings.py:160
+msgid "German"
+msgstr ""
+
+#: .\Ator\views.py:28 .\Ator\views.py:61 .\connectiontypes\views.py:26
+#: .\sensors\views.py:19 .\sensors\views.py:87
+msgid "Sensor not found"
+msgstr "Sensor nicht gefunden"
+
+#: .\Ator\views.py:42 .\devices\views.py:19
+#, fuzzy
+msgid "Device not found"
+msgstr "Gerät nicht gefunden"
+
+#: .\Ator\views.py:78
+msgid "MQTT nicht erreichbar"
+msgstr ""
+
+#: .\connections\views.py:91
+#, fuzzy
+msgid "Connection not found"
+msgstr "Sensor nicht gefunden"
+
+#: .\connectiontypes\models.py:36
+msgid "IP Address"
+msgstr ""
+
+#: .\devices\models.py:35
+msgid "no Sensor"
+msgstr ""
+
+#: .\locations\views.py:68
+#, fuzzy
+msgid "Building not found"
+msgstr "Sensor nicht gefunden"
+
+#: .\locations\views.py:159 .\locations\views.py:206
+#, fuzzy
+msgid "Room not found"
+msgstr "Sensor nicht gefunden"
+
+#: .\sensors\forms.py:16
+#: .\templates\connectiontypes\connectiontype_details.html:22
+#: .\templates\connectiontypes\connectiontype_new.html:19
+#: .\templates\sensortypes\sensortype_details.html:25
+#: .\templates\sensortypes\sensortype_new.html:25
+msgid "Typ Bezeichnung"
+msgstr ""
+
+#: .\sensors\forms.py:17 .\templates\sensortypes\sensortype_details.html:36
+#: .\templates\sensortypes\sensortype_new.html:36
+#: .\templates\sensortypes\sensortypes.html:22
+msgid "Datenblatt"
+msgstr ""
+
+#: .\sensors\models.py:11
+msgid "Type:"
+msgstr ""
+
+#: .\sensors\models.py:45
+msgid "can measure"
+msgstr ""
+
+#: .\sensors\models.py:54
+msgid "has"
+msgstr ""
+
+#: .\templates\base.html:67 .\templates\main_page.html:9
+msgid "Hallo anonymer Benutzer"
+msgstr ""
+
+#: .\templates\base.html:68 .\templates\main_page.html:10
+msgid "Bitte anmelden: "
+msgstr ""
+
+#: .\templates\base.html:68 .\templates\main_page.html:10
+msgid "Login"
+msgstr ""
+
+#: .\templates\connections\connection_details.html:4
+#: .\templates\connections\connections.html:9
+msgid "Verbindung"
+msgstr ""
+
+#: .\templates\connections\connection_details.html:5
+msgid "Verbindung: "
+msgstr ""
+
+#: .\templates\connections\connection_details.html:62
+msgid "Master der Verbindung"
+msgstr ""
+
+#: .\templates\connections\connection_details.html:71
+msgid "Verbindung trennen "
+msgstr ""
+
+#: .\templates\connections\connection_details.html:114
+#: .\templates\connections\connection_details.html:155
+#: .\templates\connections\connection_details.html:207
+#: .\templates\connections\connection_details.html:247
+msgid "Bezeichnung:"
+msgstr ""
+
+#: .\templates\connections\connection_details.html:115
+#: .\templates\connections\connection_details.html:156
+#: .\templates\connections\connection_details.html:208
+#: .\templates\connections\connection_details.html:248
+msgid "Wert"
+msgstr ""
+
+#: .\templates\connections\connection_details.html:117
+#: .\templates\connections\connection_details.html:158
+#: .\templates\connections\connection_details.html:210
+#: .\templates\connections\connection_details.html:250
+#: .\templates\connectiontypes\connectiontype_details.html:57
+#: .\templates\sensortypes\sensortype_details.html:109
+msgid "Löschen"
+msgstr ""
+
+#: .\templates\connections\connection_details.html:275
+#: .\templates\connections\connection_new.html:54
+#: .\templates\connectiontypes\connectiontype_details.html:92
+#: .\templates\connectiontypes\connectiontype_new.html:54
+#: .\templates\locations\address.html:33
+#: .\templates\locations\building.html:36 .\templates\locations\room.html:33
+#: .\templates\sensors\sensor_details.html:43
+#: .\templates\sensortypes\sensortype_details.html:147
+msgid "Änderungen übernehmen"
+msgstr ""
+
+#: .\templates\connections\connection_details.html:278
+#: .\templates\connections\connection_new.html:59
+#: .\templates\connectiontypes\connectiontype_details.html:97
+#: .\templates\connectiontypes\connectiontype_new.html:59
+#: .\templates\locations\address.html:37
+#: .\templates\locations\building.html:40 .\templates\locations\room.html:37
+#: .\templates\sensors\sensor_details.html:46
+#: .\templates\sensortypes\sensortype_details.html:152
+msgid "Mit Änderungen zurück"
+msgstr ""
+
+#: .\templates\connections\connection_details.html:280
+#: .\templates\locations\address.html:39
+#: .\templates\locations\building.html:42 .\templates\locations\room.html:39
+#: .\templates\sensors\sensor_details.html:48
+#: .\templates\sensortypes\sensortype_details.html:154
+msgid "Ohne Änderungen zurück"
+msgstr ""
+
+#: .\templates\connections\connection_new.html:4
+msgid "neue Verbindung hinzufügen"
+msgstr ""
+
+#: .\templates\connections\connection_new.html:5
+msgid "neue Verbindung"
+msgstr ""
+
+#: .\templates\connections\connection_new.html:19
+#: .\templates\connectiontypes\topology_new.html:12
+#: .\templates\devices\devices.html:9
+msgid "Bezeichnung"
+msgstr ""
+
+#: .\templates\connections\connection_new.html:30
+msgid "Verbindungstyp"
+msgstr ""
+
+#: .\templates\connections\connection_new.html:55
+#: .\templates\connectiontypes\connectiontype_new.html:55
+msgid "(fügt bei Bedarf zusätzliche Felder hinzu)"
+msgstr ""
+
+#: .\templates\connections\connections.html:4
+msgid "Verbindungen"
+msgstr ""
+
+#: .\templates\connections\connections.html:5
+#: .\templates\sensors\sensors.html:19
+msgid "Bestehende Verbindungen"
+msgstr ""
+
+#: .\templates\connections\connections.html:10
+#: .\templates\connectiontypes\connectiontypes.html:11
+#: .\templates\sensors\sensors.html:15
+msgid "Typ"
+msgstr ""
+
+#: .\templates\connections\connections.html:11
+msgid "Angeschlossene Geräte"
+msgstr ""
+
+#: .\templates\connections\connections.html:12
+msgid "Allgemeine Parameter"
+msgstr ""
+
+#: .\templates\connectiontypes\connectiontype_details.html:4
+msgid "Eigenschaften"
+msgstr ""
+
+#: .\templates\connectiontypes\connectiontype_details.html:5
+#: .\templates\sensortypes\sensortype_details.html:5
+msgid "Eigenschaften von"
+msgstr ""
+
+#: .\templates\connectiontypes\connectiontype_details.html:33
+#: .\templates\connectiontypes\connectiontype_new.html:30
+#: .\templates\connectiontypes\connectiontypes.html:12
+msgid "Topologie"
+msgstr ""
+
+#: .\templates\connectiontypes\connectiontype_details.html:44
+msgid "Parameter"
+msgstr ""
+
+#: .\templates\connectiontypes\connectiontype_details.html:53
+msgid "Format"
+msgstr ""
+
+#: .\templates\connectiontypes\connectiontype_details.html:54
+msgid "Größe / Anzahl"
+msgstr ""
+
+#: .\templates\connectiontypes\connectiontype_details.html:55
+msgid "Gerätespezifisch"
+msgstr ""
+
+#: .\templates\connectiontypes\connectiontype_details.html:56
+msgid "Voreingestellt"
+msgstr ""
+
+#: .\templates\connectiontypes\connectiontype_details.html:93
+#: .\templates\sensortypes\sensortype_details.html:148
+msgid ""
+"(fügt bei Bedarf zusätzliche Felder für Schnittstellen und Messgrößen hinzu)"
+msgstr ""
+
+#: .\templates\connectiontypes\connectiontype_new.html:4
+msgid "neuen Verbindungstyp hinzufügen"
+msgstr ""
+
+#: .\templates\connectiontypes\connectiontype_new.html:5
+msgid "neuer Verbindungstyp"
+msgstr ""
+
+#: .\templates\connectiontypes\connectiontypes.html:4
+#: .\templates\connectiontypes\connectiontypes.html:5
+msgid "Verbindungstypen"
+msgstr ""
+
+#: .\templates\connectiontypes\connectiontypes.html:13
+msgid "Mögliche Parameter"
+msgstr ""
+
+#: .\templates\connectiontypes\topology_new.html:4
+msgid "neue Topologie hinzufügen"
+msgstr ""
+
+#: .\templates\connectiontypes\topology_new.html:5
+msgid "neue Topologie"
+msgstr ""
+
+#: .\templates\connectiontypes\topology_new.html:16
+msgid "Toplogie hinzufügen"
+msgstr ""
+
+#: .\templates\devices\devices.html:4 .\templates\locations\locations.html:13
+msgid "Geräte"
+msgstr ""
+
+#: .\templates\devices\devices.html:5
+msgid "Vorhandene Geräte"
+msgstr ""
+
+#: .\templates\devices\devices.html:10
+msgid "Externe ID"
+msgstr ""
+
+#: .\templates\devices\devices.html:11 .\templates\locations\location.html:4
+#: .\templates\locations\locations.html:12 .\templates\sensors\sensors.html:17
+msgid "Ort"
+msgstr ""
+
+#: .\templates\devices\devices.html:12
+msgid "Ping zuletzt gesendet"
+msgstr ""
+
+#: .\templates\devices\devices.html:13
+msgid "Ping zuletzt empfangen"
+msgstr ""
+
+#: .\templates\devices\devices.html:20
+msgid "jetzt senden"
+msgstr ""
+
+#: .\templates\emptyPage.html:4 .\templates\sensors\sensor_new.html:4
+#: .\templates\sensors\sensors.html:101
+msgid "neuen Sensor hinzufügen"
+msgstr ""
+
+#: .\templates\emptyPage.html:5 .\templates\sensors\sensor_new.html:5
+msgid "neuer Sensor"
+msgstr ""
+
+#: .\templates\locations\address.html:4
+#: .\templates\locations\locations.html:15
+msgid "Gebäude"
+msgstr ""
+
+#: .\templates\locations\address.html:5
+msgid "Gebäude an der Address"
+msgstr ""
+
+#: .\templates\locations\building.html:4
+#: .\templates\locations\building_new.html:4
+#: .\templates\locations\location_new.html:4
+#: .\templates\locations\locations.html:4 .\templates\locations\room.html:4
+msgid "Orte"
+msgstr ""
+
+#: .\templates\locations\building.html:5
+msgid "Räume in"
+msgstr ""
+
+#: .\templates\locations\building_new.html:5
+msgid "neues Gebäude anlegen: Addresse wählen oder hinzufügen"
+msgstr ""
+
+#: .\templates\locations\building_new.html:24
+msgid "Adresse hinzufügen"
+msgstr ""
+
+#: .\templates\locations\location_new.html:5
+msgid "neuen Ort anlegen: Raum oder Gebäude wählen"
+msgstr ""
+
+#: .\templates\locations\locations.html:5
+msgid "Orte Übersicht"
+msgstr ""
+
+#: .\templates\locations\locations.html:14
+msgid "Raum"
+msgstr ""
+
+#: .\templates\locations\locations.html:16
+msgid "Adresse"
+msgstr ""
+
+#: .\templates\locations\locations.html:66
+msgid "Keine Orte gefunden, neuen hinzufügen"
+msgstr ""
+
+#: .\templates\locations\locations_management.html:4
+msgid "Verwaltung der Orte"
+msgstr ""
+
+#: .\templates\locations\locations_management.html:5
+msgid "Räume in Gebäuden"
+msgstr ""
+
+#: .\templates\locations\room.html:5
+msgid "Orte im Raum"
+msgstr ""
+
+#: .\templates\main_page.html:3 .\templates\main_page.html:7
+msgid "Willkommen"
+msgstr ""
+
+#: .\templates\sensors\sensor_details.html:4
+#: .\templates\sensors\sensors.html:4
+msgid "Sensoren"
+msgstr ""
+
+#: .\templates\sensors\sensor_details.html:75
+#: .\templates\sensors\sensors.html:16
+#: .\templates\sensortypes\sensortype_details.html:98
+#: .\templates\sensortypes\sensortypes.html:15
+msgid "Messgrößen"
+msgstr ""
+
+#: .\templates\sensors\sensor_details.html:90
+#: .\templates\sensors\sensors.html:18
+#: .\templates\sensortypes\sensortypes.html:16
+msgid "mögliche Interfaces"
+msgstr ""
+
+#: .\templates\sensors\sensor_new.html:17
+msgid "Sensor Bezeichnung"
+msgstr ""
+
+#: .\templates\sensors\sensor_new.html:27
+#: .\templates\sensortypes\sensortype_details.html:4
+#: .\templates\sensortypes\sensortype_new.html:4
+#: .\templates\sensortypes\sensortypes.html:14
+msgid "Sensortyp"
+msgstr ""
+
+#: .\templates\sensors\sensor_new.html:38
+#: .\templates\sensors\sensor_new.html:52
+msgid "Hinzufügen"
+msgstr ""
+
+#: .\templates\sensors\sensor_new.html:62
+msgid "Sensor anlegen"
+msgstr ""
+
+#: .\templates\sensors\sensors.html:5
+msgid "Sensoren Übersicht"
+msgstr ""
+
+#: .\templates\sensors\sensors.html:13
+msgid "Sensor"
+msgstr ""
+
+#: .\templates\sensors\sensors.html:14
+msgid "Kennzeichnung"
+msgstr ""
+
+#: .\templates\sensortypes\sensortype_details.html:46
+msgid "Schnittstellen"
+msgstr ""
+
+#: .\templates\sensortypes\sensortype_details.html:55
+msgid "Anzahl:"
+msgstr ""
+
+#: .\templates\sensortypes\sensortype_details.html:56
+msgid "Löschen:"
+msgstr ""
+
+#: .\templates\sensortypes\sensortype_details.html:63
+msgid ""
+"Diese Schnittstelle existiert bereits,<br> bitte dort die Anzahl anpassen"
+msgstr ""
+
+#: .\templates\sensortypes\sensortype_details.html:92
+msgid "Weitere mögliche Schnittstellen hinzufügen"
+msgstr ""
+
+#: .\templates\sensortypes\sensortype_details.html:107
+msgid "Messbereich von"
+msgstr ""
+
+#: .\templates\sensortypes\sensortype_details.html:108
+msgid "bis"
+msgstr ""
+
+#: .\templates\sensortypes\sensortype_details.html:118
+msgid "Weitere mögliche Einheiten hinzufügen"
+msgstr ""
+
+#: .\templates\sensortypes\sensortype_new.html:5
+msgid "Neuer Sensortyp"
+msgstr ""
+
+#: .\templates\sensortypes\sensortype_new.html:51
+msgid "Sensortyp erzeugen"
+msgstr ""
+
+#: .\templates\sensortypes\sensortypes.html:4
+msgid "Sensormntypen"
+msgstr ""
+
+#: .\templates\sensortypes\sensortypes.html:5
+msgid "Sensortypen"
+msgstr ""
+
+#: .\templates\sensortypes\sensortypes.html:24
+msgid "Kein Datenblatt vorhanden"
+msgstr ""
+
+#: .\templates\sensortypes\sensortypes.html:37
+msgid "Anzahl"
+msgstr ""
+
+#: .\templates\sensortypes\sensortypes.html:48
+msgid "Neuen Typ hinzufügen"
+msgstr ""

@@ -1,0 +1,24 @@
+{%  extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "neue Topologie hinzufügen" %}{% endblock %}
+{% block head %}{% trans "neue Topologie" %}{% endblock %}
+
+{% block content %}
+<form method="post" enctype="multipart/form-data">
+
+<table id="newobject">
+    <tr>
+        <td>{% trans "Bezeichnung" %}</td>
+        <td>{{ form.topologyName }}</td>
+    </tr>
+    <tr>
+        <td colspan="2">  <p align="center"> <button style="width:200px" type="submit" name="saveChanges" class="save btn btn-default"> {% trans "Toplogie hinzufügen" %}</button></p>
+         <p align="center"> <a href="{{ requestref }}">Zurück</a></p>
+</td></tr>
+</table>
+
+     {% csrf_token %}
+</form>
+
+{% endblock %}

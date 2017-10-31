@@ -1,0 +1,166 @@
+{%  extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Sensortyp" %} {{ Sensortype }}{% endblock %}
+{% block head %}{%  trans "Eigenschaften von" %} {{ Sensortype }}{% endblock %}
+
+{% block content %}
+
+
+     <form method="post" enctype="multipart/form-data">
+
+
+
+     {% csrf_token %}
+     {% for hidden in form.hidden_fields %}
+                            {{ hidden }}
+                         {% endfor %}
+
+
+     <table id="newobject">
+
+         <tr id="overview">
+
+                 <td >
+                {% trans "Typ Bezeichnung" %}
+
+            </td>
+            <td >
+                    {{ form.typeName }}
+            </td>
+         </tr>
+
+          <tr id="overview">
+
+                 <td >
+                {% trans "Datenblatt" %}
+
+            </td>
+            <td >
+                    {{ form.datasheet }}
+            </td>
+         </tr>
+
+           <tr id="overview">
+                 <td>
+                {% trans "Schnittstellen" %}
+            </td>
+            <td >
+
+
+                <table border="0" cellspacing="10" cellpadding="0" >
+                    {% for iform in intFormset %}
+                        <tr>
+                            <td align="center"> {{ iform.connectionType }}</td>
+                            <td> {% trans "Anzahl:"%} {{ iform.quantity }}</td>
+                            <td align="center"> {% trans "Löschen:" %}  {{ iform.DELETE }}</td>
+                               <td>
+
+                         </td>
+                        </tr>
+                        <tr>
+                            <td>{% if iform.non_field_errors %}
+                                  <p id="error"> {% trans "Diese Schnittstelle existiert bereits,<br> bitte dort die Anzahl anpassen" %}</p>
+                            {% endif %}</td>
+                            <td> {% if iform.errors %}
+                                    {% for field in iform %}
+                                      {% if field.errors%}
+                                        {% for error in field.errors %}
+
+                                     <p id="error"> {{ error|escape }} </p>
+                                        {% endfor %}
+                                      {% endif %}
+                                    {% endfor %}
+                            {% endif %}
+
+
+                            </td>
+
+
+                            <td></td>
+                        </tr>
+
+
+                        {% for hidden in iform.hidden_fields %}
+                            {{ hidden }}
+                         {% endfor %}
+                    {% endfor %}
+                </table>
+
+
+            <br>
+                <a href="/connections/connectiontypes/add/">{% trans  "Weitere mögliche Schnittstellen hinzufügen" %}</a>
+            {{ intFormset.management_form }}
+            </td>
+         </tr>
+            <tr id="overview">
+                 <td>
+                {% trans "Messgrößen" %}
+            </td>
+
+            <td >
+                <table border="0" cellspacing="10" cellpadding="0" >
+
+                    {% for mform in msFormset  %}
+                        <tr>
+                        <td align="center">{{ mform.measurement }}</td>
+                        <td align="center"> {% trans "Messbereich von" %} {{ mform.rangeMin }} </td>
+                        <td align="center"> {% trans "bis" %} {{ mform.rangeMax }} </td>
+                        <td align="center"> {% trans "Löschen" %}: {{ mform.DELETE }}</td>
+                        </tr>
+                         {% for hidden in mform.hidden_fields %}
+                            {{ hidden }}
+                         {% endfor %}
+
+                     {% endfor %}
+                </table>
+
+        {% trans "Weitere mögliche Einheiten hinzufügen" %}
+             {{ msFormset.management_form }}
+
+
+
+
+              {% comment %}}  {% for measurement in Sensortype.measurements.all %}
+                   {{ measurement }} <br>
+                    {% endfor %}
+                {% endcomment %}
+          <br>
+            </td>
+
+         </tr>
+<tr>
+    <td>
+
+
+
+
+    </td>
+</tr>
+         <tr>
+             <td>
+
+             </td>
+             <td>
+             <br>
+                 <button style="width:200px" type="submit" name="saveChanges" class="save btn btn-default"> {% trans "Änderungen übernehmen" %}</button>
+                    {% trans "(fügt bei Bedarf zusätzliche Felder für Schnittstellen und Messgrößen hinzu)" %}
+
+                 {% if requestref %}
+                     <br>
+                       <button style="width:200px" type="submit" name="saveChangesBack" class="save btn btn-default"> {% trans "Mit Änderungen zurück" %}</button>
+<br>
+                 <button style="width:200px" type="submit" name="cancel" class="save btn btn-default"> {% trans "Ohne Änderungen zurück" %}</button>
+
+
+                 {% endif %}
+
+
+             </td>
+         </tr>
+
+     </table>
+
+    </form>
+
+{% endblock %}

@@ -1,0 +1,122 @@
+{%  extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{%  trans "Sensoren" %}{% endblock %}
+{% block head %}Sensor: {{ sensor.device.description }}{% endblock %}
+
+{% block content %}
+
+
+ <form method="post" enctype="multipart/form-data">
+
+
+
+     {% csrf_token %}
+     {% for hidden in sensorProperties.hidden_fields %}
+                            {{ hidden }}
+     {% endfor %}
+      {% for hidden in deviceProperties.hidden_fields %}
+                            {{ hidden }}
+     {% endfor %}
+<table id="newobject">
+    <tr id="overview">
+        <td>Bezeichnung:</td>
+        <td>{{ deviceProperties.description }}</td>
+    </tr>
+ <tr id="overview">
+        <td>Kennzeichnung</td>
+        <td>{{ deviceProperties.externalID }}</td>
+    </tr>
+    <tr id="overview">
+        <td>Ort:</td>
+        <td>{{ deviceProperties.location }}</td>
+    </tr>
+    <tr id="overview">
+        <td>Typ:</td>
+        <td>{{ sensorProperties.sensortype }}</td>
+    </tr>
+
+
+<tr>
+<td></td>
+<td>
+                 <button style="width:200px" type="submit" name="saveChanges" class="save btn btn-default"> {% trans "Änderungen übernehmen" %}</button>
+                 {% if requestref %}
+                     <br>
+                       <button style="width:200px" type="submit" name="saveChangesBack" class="save btn btn-default"> {% trans "Mit Änderungen zurück" %}</button>
+                <br>
+                 <button style="width:200px" type="submit" name="cancel" class="save btn btn-default"> {% trans "Ohne Änderungen zurück" %}</button>
+
+                 {% endif %}
+</td>
+</tr>
+</table>
+
+
+
+ </form>
+    <h1>Eigenschaften, die vom Typ <i>{{ sensor.sensortype }}</i> festgelegt werden</h1>
+
+
+
+        <table id="newobject">
+
+        <tr>
+     <td id="overview">
+
+            {% if  sensor.sensortype.datasheet  %}
+        <a href="/site_media/{{ sensor.sensortype.datasheet }}">Datenblatt</a>
+
+          {% endif %}
+      </td>
+</tr>
+        <tr><td></td></tr>
+        <tr>
+             <th>{%  trans "Messgrößen" %}</th>
+        </tr>
+        <tr>
+         <td align="left">
+          {% for measurement  in sensor.sensortype.sensortypecanmeasure_set.all %}
+             <li>    {{ measurement.measurement }}
+                 {% if measurement.rangeMax  %}
+                 (bis {{ measurement.rangeMax }}{{ measurement.measurement.unit }})
+                 {% endif %}
+             </li>
+          {% endfor %}
+      </td>
+        </tr>
+        <tr><td></td></tr>
+<tr>
+     <th>{%  trans "mögliche Interfaces" %}</th>
+</tr>
+    <tr>
+        <td id="overview">
+           {% for interface  in sensor.sensortype.sensortypehasinterfaces_set.all %}
+              <li>    {{ interface.connectionType.connectionName }}
+             (Anzahl: {{ interface.quantity }})</li>
+          {% endfor %}
+        </td>
+
+    </tr>
+<tr><td></td></tr>
+            <tr>
+
+    <td align="center">
+        <a href="/devices/sensors/sensortype/{{ sensor.sensortype.id }}">Typ bearbeiten</a>
+    </td>
+</tr>
+
+        </table>
+<h1>Bestehende Verbindungen</h1>
+<table id="newobject">
+
+<tr><td>
+{% for connectionP in sensor.device.connectionpartner_set.all %}
+    <a href="/connection/{{ connectionP.connection.id }}">{{ connectionP.connection }}</a><br>
+    {% endfor %}</td>
+</tr>
+
+
+</table>
+
+{% endblock %}

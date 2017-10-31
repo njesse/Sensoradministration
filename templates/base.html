@@ -1,0 +1,72 @@
+{% load staticfiles %}
+ {% load sitetree %}
+{% load i18n %}
+<script src="{% static "/js/jquery.js" %}"></script>
+<script src="{% static "/js/rango-ajax.js" %}"></script>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/XHTML1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <title>ATOR Sensoradministration | {% block title %}{% endblock %}</title>
+<link rel="stylesheet" href="/site_media/style.css" type="text/css" />
+<link rel="shortcut icon" href="{% static 'faviconA.ico' %}"/>
+</head>
+
+<body>
+
+<ul id="menu">
+<li><a href="/">Home</a></li>
+
+<li>
+    <a href="/devices/sensors">Sensoren</a>
+  <ul>
+            <li><a href="/devices/sensors/sensortypes">Sensortypen</a></li>
+
+  </ul>
+
+</li>
+<li>
+    <a href="/locations">Orte</a>
+
+  <ul>
+            <li><a href="/locations/add">Ort hinzufügen</a></li>
+             <li><a href="/locations/buildings/add">Gebäude hinzufügen</a></li>
+  </ul>
+</li>
+
+<li>
+    <a href="/connections">Verbindungen</a>
+     <ul>
+            <li><a href="/connections/connectiontypes">Verbindungstypen</a></li>
+
+  </ul>
+</li>
+
+
+    {% if user.is_authenticated %}
+         <li>    <a href="/admin">Adminbereich</a></li>
+      <li>    <a href="/logout">logout ({{  user.get_username }})</a></li>
+    {%  else %}
+     <li> <a href="/login/">Login</a></li>
+    {%  endif %}
+</ul>
+
+
+{% sitetree_breadcrumbs from "sitemap" template "sitetree/breadcrumbs-title.html" %}
+
+<h1>{% block head %}{% endblock %}</h1>
+
+    {% if user.username %}
+        {%  block content %} {% endblock %}
+    {%  else %}
+         <p>
+        {%  block login %}
+         {% trans "Hallo anonymer Benutzer" %}</p>
+        {% trans "Bitte anmelden: " %} <a href="/login/"> {% trans "Login" %} </a>.
+        {% endblock %}
+    {%  endif %}
+
+
+{% sitetree_breadcrumbs from "sitemap" template "sitetree/breadcrumbs-title.html" %}
+</body>
+</html>

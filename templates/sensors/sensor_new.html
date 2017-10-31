@@ -1,0 +1,71 @@
+{%  extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "neuen Sensor hinzufügen" %}{% endblock %}
+{% block head %}{% trans "neuer Sensor" %}{% endblock %}
+
+{% block content %}
+
+<form method="post" >
+     {% csrf_token %}
+
+
+<br>
+     <table id="newobject">
+        <tr id="overview">
+            <td id="overview">
+                {% trans "Sensor Bezeichnung" %}
+            </td>
+            <td id="overview">
+                {{ form.description }}
+            </td>
+            <td>
+
+            </td>
+        </tr>
+         <tr id="overview">
+             <td> {% trans "Sensortyp" %}
+
+             </td>
+             <td>
+                 <table>
+                   {{ form.sensortype }}
+
+                 </table>
+
+             </td>
+             <td>
+                  <a href="/devices/sensors/sensortype/add">{%  trans "Hinzufügen" %}</a>
+             </td>
+         </tr>
+
+
+          <tr id="overview">
+             <td>
+                Ort
+             </td>
+              <td>
+
+                 {{ form.location }}
+              </td>
+             <td>
+                 <a href="/locations/add">{%  trans "Hinzufügen" %}</a>
+
+             </td>
+         </tr>
+
+         <tr >
+             <td>
+
+             </td>
+             <td>
+ <button type="submit" class="save btn btn-default">{%  trans "Sensor anlegen" %}</button>
+             </td>
+             <td>
+
+             </td>
+         </tr>
+     </table>
+
+    </form>
+{% endblock %}

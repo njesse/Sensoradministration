@@ -1,0 +1,33 @@
+{%  extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Verbindungstypen" %}{% endblock %}
+{% block head %}{% trans "Verbindungstypen" %}{% endblock %}
+
+{% block content %}
+<table id="overview">
+ <colgroup> <col > <col width="200"> <col > </colgroup>
+
+            <th>{%  trans "Typ" %}</th>
+            <th>{%  trans "Topologie" %}</th>
+            <th>{%  trans "Mögliche Parameter" %}</th>
+
+  {% for type in ConnectionTypes %}
+<tr id="overview">
+    <td id="overview"><a href="/connections/connectiontype/{{ type.id }}">{{ type.connectionName }}</a></td>
+       <td id="overview">{{ type.topology }}</td>
+        <td id="overview">
+      {% for parameter in type.connectionhasparameter_set.all %}
+        {{ parameter.parameterName }} (Datentyp: {{ parameter.format }})<br>
+      {% endfor %}
+        </td>
+</tr>
+{% endfor %}
+<tr>
+    <td></td>
+    <td colspan="2"><br><a href="/connections/connectiontypes/add/">neuen Verbindungstyp hinzufügen</a></td>
+
+</tr>
+</table>
+
+{% endblock %}

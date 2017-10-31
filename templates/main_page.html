@@ -1,0 +1,14 @@
+{%  extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Willkommen"%}{% endblock %}
+{% block head %}ATOR Sensoradministration{% endblock %}
+{% block content %}
+ {% if user.username %}
+    <p>{% trans "Willkommen" %} {{ user.username }}!</p>
+    {%  else %}
+    <p>{% trans "Hallo anonymer Benutzer" %}</p>
+     {% trans "Bitte anmelden: " %} <a href="/login/"> {% trans "Login" %} </a>.
+    {%  endif %}
+
+
+{% endblock %}

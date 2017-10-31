@@ -1,0 +1,4 @@
+{% load sitetree %}
+{% if sitetree_items|length_is:"1" %}
+{% else %}<br>{% for item in sitetree_items %}<a href="{% sitetree_url for item %}">{{ item.title_resolved }}</a></li>
+{% if not forloop.last %} - {% endif %}{% endfor %}{% endif %}

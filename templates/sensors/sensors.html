@@ -1,0 +1,109 @@
+{%  extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{%  trans "Sensoren" %}{% endblock %}
+{% block head %}{%  trans "Sensoren Übersicht" %}{% endblock %}
+
+{% block content %}
+     {% comment %}
+     {% if Sensors %}
+        {% endcomment %}
+        <table id="overview">
+        <th id="overview">{%  trans "Sensor" %}</th>
+          <th>{%  trans "Kennzeichnung" %}</th>
+            <th>{%  trans "Typ" %}</th>
+            <th>{%  trans "Messgrößen" %}</th>
+            <th>{%  trans "Ort" %}</th>
+            <th>{%  trans "mögliche Interfaces" %}</th>
+            <th>{%  trans "Bestehende Verbindungen" %}</th>
+        {% for Sensor in Sensors %}
+<tr id="overview">
+      <td id="overview">
+          <b><a href="/devices/sensor/{{ Sensor.id }}"> {{ Sensor.device.description }}</a> </b>
+
+      </td>
+ <td id="overview">
+     {{ Sensor.device.externalID }}
+
+      </td>
+        <td id="overview">
+          {{ Sensor.sensortype.typeName }}
+            {% if  Sensor.sensortype.datasheet  %}
+          <br>(<a href="/site_media/{{ Sensor.sensortype.datasheet }}">Datenblatt</a>)
+
+          {% endif %}
+      </td>
+        <td align="left">
+          {% for measurement  in Sensor.sensortype.sensortypecanmeasure_set.all %}
+             <li>    {{ measurement.measurement }}
+                 {% if measurement.rangeMax  %}
+                 (bis {{ measurement.rangeMax }}{{ measurement.measurement.unit }})
+                 {% endif %}
+             </li>
+          {% endfor %}
+      </td>
+       <td id="overview">
+            {{ Sensor.device.location }}
+      </td>
+      <td id="overview">
+       {% for interface  in Sensor.sensortype.sensortypehasinterfaces_set.all %}
+         <li>{{ interface.connectionType.connectionName }}
+             (Anzahl: {{ interface.quantity }})</li>
+       {% endfor %}
+        </td>
+         <td id="overview">
+            {% for connection in Sensor.device.connection_set.all %}
+                {{ connection.description }}
+             {% endfor %}
+
+
+        </td>
+
+</tr>
+
+ {% comment %}
+            <li> {{ Sensor.device.description }}
+             {% comment %}
+            {%  if Sensor.sensortype.typeName %}
+                ({{ Sensor.sensortype.typeName }}
+                 Messgrößen:
+                   {% for measurement in Sensor.sensortype.measurements.all %}
+                     {{ measurement }}
+                   {% endfor %}
+                )
+            {% endif %}
+
+            {%  if Sensor.device.location %}
+               ({{ Sensor.device.location }})
+            {% endif %}
+            {%  if Sensor.sensortype.typeName %}
+                <br>{{ Sensor.sensortype.typeName }}
+               <br> Mögliche Messgrößen:
+                   {% for canmeasure in Sensor.sensortype.sensortypecanmeasure_set.all %}
+                 <ul>   {{ canmeasure.measurement }} (bis {{ canmeasure.rangeMax }}{{ canmeasure.measurement.unit }})</ul>
+                   {% endfor %}
+            {% endif %}
+
+            </li>
+  {% endcomment %}
+        {% endfor %}
+        <tr>
+<td>
+
+</td>
+    <td>
+
+    </td>
+<td>
+    <br>
+    <a href='/devices/sensors/add'>{%  trans "neuen Sensor hinzufügen" %}</a>
+</td>
+</tr>
+        </table>
+          {% comment %}
+    {% else %}
+        <p>{%  trans "Keine Sensoren definiert" %}</p>
+    {% endif %}
+ {% endcomment %}
+
+{% endblock %}

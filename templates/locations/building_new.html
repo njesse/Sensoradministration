@@ -1,0 +1,45 @@
+{%  extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Orte" %}{% endblock %}
+{% block head %}{% trans "neues Gebäude anlegen: Addresse wählen oder hinzufügen" %}{% endblock %}
+
+{% block content %}
+
+<form method="post" enctype="multipart/form-data">
+{% csrf_token %}
+
+{{ form.management_form }}
+
+        {% for hidden in form.hidden_fields %}
+                            {{ hidden }}
+                         {% endfor %}
+    <table id="newobject">
+
+        <tr><td align="right">1. Zeile: {{ form.addressLine1 }}</td><td align="right"> 2. Zeile: {{ form.addressLine2 }}</td></tr>
+        <tr><td align="right">PLZ: {{ form.zip }}</td><td align="right"> Ort: {{ form.city }}</td></tr>
+        <tr><td align="right">Land: {{ form.country }}</td></tr>
+
+    </table>
+<p align="center"><button style="width:200px" type="submit" name="saveChanges" class="save btn btn-default"> {% trans "Adresse hinzufügen" %}</button></p>
+</form>
+
+    <br><br>
+
+<table id="newobject">
+
+    {% for address in addresses_all %}
+     <tr>
+     <th id="overview"><a href="/locations/address/{{  address.id }}">{{ address }}</a></th>
+     </tr>
+     {% for building in address.building_set.all %}
+     <tr id="overview" >
+         <td align="center">{{ building.description }}</td>
+     </tr>
+      {% endfor %}
+        <tr><td>&nbsp;</td></tr>
+ {% endfor %}
+
+</table>
+
+{% endblock %}
